@@ -28,7 +28,7 @@ namespace Animals.Tests
         [TestCase(new[] { "fish", "grass", "meat" }, new[] { 3.2d, 5d })]
         [TestCase(new[] { "eggs", "grass" }, new[] { 0.9d, 15d, 10.6d })]
         [TestCase(new[] { "meat" }, new double[] { })]
-        public void DoEatTest_When_weightLenghtNoEqual_foodLenght_ShouldArgumentException(string[] a, double[] b)
+        public void DoEatTest_When_weightLengthNoEqual_foodLength_ShouldArgumentException(string[] a, double[] b)
         {
             AnimalsInZoo bear = new AnimalsInZoo("bear", "forest", 1000, new[] { "fish", "meat" }, true, "Byyyyeer", "Vinni", 50.5, 3);
             Assert.Throws<ArgumentException>(() => bear.DoEat(a, b));

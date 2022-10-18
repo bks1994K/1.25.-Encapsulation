@@ -2,6 +2,9 @@
 {
     public class AnimalsInZoo
     {
+        private int _age;
+        private double _weightFood;
+        private double _atedFood;
         public string Type { get; set; }
         public string Habitat { get; set; }
         public int HabitatArea { get; set; }
@@ -37,9 +40,7 @@
                 }
             }
         }
-        private int _age;
-        private double _weightFood;
-        private double _atedFood;
+
         public double AtedFood
         {
             get { return _atedFood; }
@@ -58,6 +59,33 @@
             WeightFood = weightFood;
             Age = age;
             _atedFood = 0;
+        }
+
+        public AnimalsInZoo(string type, string name)
+        {
+            Type = type;
+            Name = name;
+            switch (type)
+            {
+                case "bear":
+                    Habitat = "forest";
+                    HabitatArea = 5000;
+                    Food = new[] { "meat", "fish" };
+                    IsPredator = true;
+                    Sound = "Beaaaar";
+                    WeightFood = 100;
+                    break;
+                case "cow":
+                    Habitat = "field";
+                    HabitatArea = 1000;
+                    Food = new[] { "grass" };
+                    IsPredator = false;
+                    Sound = "Muuuuu";
+                    WeightFood = 50;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void DoEat(string[] food, double[] weightFood)
@@ -80,7 +108,7 @@
                 {
                     if ((food[i] == Food[j]))
                     {
-                        Console.WriteLine($"{Name}: I ate {food[j]} {weightFood}");
+                        Console.WriteLine($"{Name}: I ate {food[i]} {weightFood[i]}");
                         _atedFood = _atedFood + weightFood[i];
                         canEat = true;
                     }
@@ -97,6 +125,21 @@
             else
             {
                 Console.WriteLine($"{Name}: I want more eat");
+            }
+        }
+        public void DoSound()
+        {
+            Console.WriteLine($"{Name}: {Sound}");
+        }
+        public void DoPlay()
+        {
+            if (!IsPredator && _age <= 2)
+            {
+                Console.WriteLine($"{Name} play with you");
+            }
+            else if (IsPredator)
+            {
+                Console.WriteLine($"Play with {Type}-{Name} is dangerous");
             }
         }
     }
